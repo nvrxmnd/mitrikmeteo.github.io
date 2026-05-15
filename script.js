@@ -468,3 +468,8 @@ themeToggle.addEventListener('click', () => {
 });
 
 updateThemeLabel();
+
+// Плавное появление фото при загрузке страницы
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
