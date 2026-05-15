@@ -984,3 +984,223 @@ body.light-theme .rain-drop {
         font-size: 16px;
     }
 }
+
+/* Фото городов на главной странице */
+.section--home {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 0;
+    overflow: hidden;
+}
+
+.section--home .section__image {
+    position: relative;
+    width: 25%;
+    min-width: 200px;
+    overflow: hidden;
+}
+
+/* Закругление у левого фото (слева прямые углы, справа скругленные) */
+.section--home .section__image--left {
+    border-radius: 0 40px 40px 0;
+}
+
+/* Закругление у правого фото (справа прямые углы, слева скругленные) */
+.section--home .section__image--right {
+    border-radius: 40px 0 0 40px;
+}
+
+.section--home .section__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Наследуем закругления для img, чтобы фото тоже были скругленными */
+.section--home .section__image--left img {
+    border-radius: 0 40px 40px 0;
+}
+
+.section--home .section__image--right img {
+    border-radius: 40px 0 0 40px;
+}
+
+.section--home .section__content-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px 60px;
+    min-height: 100vh;
+}
+
+.section--home .section__content {
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Затемнение фото */
+.section--home .section__image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.section--home .section__image--right::after {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* Светлая тема */
+body.light-theme .section--home .section__image::after {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+body.light-theme .section--home .section__image--right::after {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .section--home .section__image {
+        width: 20%;
+        min-width: 120px;
+    }
+    
+    .section--home .section__image--left {
+        border-radius: 0 25px 25px 0;
+    }
+    
+    .section--home .section__image--right {
+        border-radius: 25px 0 0 25px;
+    }
+    
+    .section--home .section__image--left img {
+        border-radius: 0 25px 25px 0;
+    }
+    
+    .section--home .section__image--right img {
+        border-radius: 25px 0 0 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .section--home .section__image {
+        display: none;
+    }
+    
+    .section--home .section__content-wrapper {
+        padding: 100px 20px 60px;
+    }
+}
+
+/* Анимированный дождь на фоне главной страницы */
+.section--home .section__content-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.rain-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.drop {
+    position: absolute;
+    bottom: 100%;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+    animation: fall linear infinite;
+}
+
+/* Разная высота капель */
+.drop:nth-child(1) { left: 5%; height: 40px; animation-duration: 1.2s; animation-delay: 0s; }
+.drop:nth-child(2) { left: 12%; height: 60px; animation-duration: 1.8s; animation-delay: 0.5s; }
+.drop:nth-child(3) { left: 18%; height: 35px; animation-duration: 1.4s; animation-delay: 0.2s; }
+.drop:nth-child(4) { left: 25%; height: 70px; animation-duration: 2s; animation-delay: 0.8s; }
+.drop:nth-child(5) { left: 32%; height: 45px; animation-duration: 1.6s; animation-delay: 0.1s; }
+.drop:nth-child(6) { left: 38%; height: 55px; animation-duration: 1.9s; animation-delay: 0.6s; }
+.drop:nth-child(7) { left: 45%; height: 30px; animation-duration: 1.3s; animation-delay: 0.9s; }
+.drop:nth-child(8) { left: 52%; height: 65px; animation-duration: 1.7s; animation-delay: 0.3s; }
+.drop:nth-child(9) { left: 58%; height: 50px; animation-duration: 2.1s; animation-delay: 0.4s; }
+.drop:nth-child(10) { left: 65%; height: 38px; animation-duration: 1.5s; animation-delay: 0.7s; }
+.drop:nth-child(11) { left: 72%; height: 72px; animation-duration: 1.9s; animation-delay: 0.15s; }
+.drop:nth-child(12) { left: 78%; height: 42px; animation-duration: 1.4s; animation-delay: 0.55s; }
+.drop:nth-child(13) { left: 85%; height: 58px; animation-duration: 1.8s; animation-delay: 0.85s; }
+.drop:nth-child(14) { left: 92%; height: 48px; animation-duration: 1.6s; animation-delay: 0.25s; }
+.drop:nth-child(15) { left: 15%; height: 52px; animation-duration: 2.2s; animation-delay: 0.95s; }
+.drop:nth-child(16) { left: 48%; height: 62px; animation-duration: 1.5s; animation-delay: 0.45s; }
+.drop:nth-child(17) { left: 68%; height: 36px; animation-duration: 1.7s; animation-delay: 0.65s; }
+.drop:nth-child(18) { left: 8%; height: 44px; animation-duration: 1.9s; animation-delay: 0.35s; }
+.drop:nth-child(19) { left: 42%; height: 68px; animation-duration: 1.3s; animation-delay: 0.75s; }
+.drop:nth-child(20) { left: 88%; height: 33px; animation-duration: 2s; animation-delay: 0.05s; }
+.drop:nth-child(21) { left: 3%; height: 56px; animation-duration: 1.6s; animation-delay: 0.5s; }
+.drop:nth-child(22) { left: 22%; height: 41px; animation-duration: 2.1s; animation-delay: 0.9s; }
+.drop:nth-child(23) { left: 35%; height: 64px; animation-duration: 1.4s; animation-delay: 0.2s; }
+.drop:nth-child(24) { left: 55%; height: 37px; animation-duration: 1.8s; animation-delay: 0.7s; }
+.drop:nth-child(25) { left: 62%; height: 59px; animation-duration: 1.5s; animation-delay: 0.4s; }
+.drop:nth-child(26) { left: 75%; height: 46px; animation-duration: 2s; animation-delay: 0.6s; }
+.drop:nth-child(27) { left: 82%; height: 53px; animation-duration: 1.7s; animation-delay: 0.1s; }
+.drop:nth-child(28) { left: 95%; height: 39px; animation-duration: 1.9s; animation-delay: 0.8s; }
+.drop:nth-child(29) { left: 28%; height: 61px; animation-duration: 1.4s; animation-delay: 0.3s; }
+.drop:nth-child(30) { left: 98%; height: 47px; animation-duration: 1.6s; animation-delay: 0.55s; }
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Для светлой темы - капли темнее */
+body.light-theme .drop {
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+}
+
+/* Плавное появление боковых фото на главной при загрузке */
+.section--home .section__image--left img {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section--home .section__image--right img {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Анимация запускается после загрузки страницы */
+body.loaded .section--home .section__image--left img,
+body.loaded .section--home .section__image--right img {
+    opacity: 1;
+    transform: translateX(0);
+}
